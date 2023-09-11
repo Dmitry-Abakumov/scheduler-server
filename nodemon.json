@@ -1,0 +1,5 @@
+{
+  "ext": "ts",
+  "exec": "ts-node -r tsconfig-paths/register ./server.ts",
+  "ignore": ["node_modules/*"]
+}
