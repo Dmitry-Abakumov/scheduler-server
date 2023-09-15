@@ -1,6 +1,8 @@
 import { Schema, model, InferSchemaType } from "mongoose";
 import Joi from "joi";
 
+import { handleMongooseError } from "utils";
+
 const taskSchema = new Schema(
   {
     text: {
@@ -17,6 +19,8 @@ const taskSchema = new Schema(
     timestamps: true,
   }
 );
+
+taskSchema.post("save", handleMongooseError);
 
 const updateDoneSchema = {
   done: Joi.boolean(),

@@ -8,9 +8,10 @@ export const isValidId = (
   res: Response,
   next: NextFunction
 ) => {
-  const { id }: { id: Types.ObjectId } = req.params;
+  const { id } = req.params;
 
   if (!isValidObjectId(id)) {
+    console.log("Id неверный");
     next(HttpError(404, `${id} invalid format`));
   }
 

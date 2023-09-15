@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import { Types } from "mongoose";
 
 import { ctrlWrapper } from "utils";
+import { HttpError } from "helpers";
 
 const getAllTasks = async (req: Request, res: Response) => {
   res.status(200).json(await Task.find({}));
@@ -13,15 +14,35 @@ const updateDoneById = async (
   res: Response
 ) => {
   const { body, params } = req;
-  const { id }: { id: Types.ObjectId } = params;
-  res
-    .status(200)
-    .json(await Task.findByIdAndUpdate({ id, body }, { new: true }));
+  const { id } = params;
+  const result = await Task.findByIdAndUpdate(id, body, { new: true });
+  res.status(200).json(result);
+};
+
+const addTask = async (req: Request, res: Response) => {
+  const { body } = req;
+
+  const result = await Task.create(body);
+
+  res.status(201).json(result);
+};
+
+const deleteTaskById = async (
+  req: Request<{ id: Types.ObjectId }>,
+  res: Response
+) => {
+  const { id } = req.params;
+  const result = await Task.findByIdAndDelete(id);
+  if (!result) throw HttpError(404, "Not found");
+
+  res.status(200).json({ message: "task deleted" });
 };
 
 const ctrl = {
   getAllTasks: ctrlWrapper(getAllTasks),
   updateDoneById: ctrlWrapper(updateDoneById),
+  deleteTaskById: ctrlWrapper(deleteTaskById),
+  addTask: ctrlWrapper(addTask),
 };
 
 export default ctrl;

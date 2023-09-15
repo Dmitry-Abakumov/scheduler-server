@@ -1,3 +1,5 @@
+import { ICustomError } from "Types";
+
 const errorMessages = {
   400: "Bad Request",
   401: "Unauthorized",
@@ -5,10 +7,6 @@ const errorMessages = {
   404: "Not Found",
   409: "Conflict",
 };
-
-interface ICustomError extends Error {
-  status?: number;
-}
 
 export const HttpError = (
   status: number,
