@@ -1,10 +1,10 @@
 import express, { Express } from "express";
 import cors from "cors";
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
 
 import tasksRouter from "routes/api/tasks";
 
-dotenv.config();
+// dotenv.config();
 
 const app: Express = express();
 

@@ -6,7 +6,9 @@ import { ctrlWrapper } from "utils";
 import { HttpError } from "helpers";
 
 const getAllTasks = async (req: Request, res: Response) => {
-  res.status(200).json(await Task.find({}));
+  const { done } = req.query;
+
+  res.status(200).json(await Task.find(done ? { done } : {}));
 };
 
 const updateDoneById = async (
