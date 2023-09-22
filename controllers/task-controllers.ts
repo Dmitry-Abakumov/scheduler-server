@@ -37,7 +37,7 @@ const deleteTaskById = async (
   const result = await Task.findByIdAndDelete(id);
   if (!result) throw HttpError(404, "Not found");
 
-  res.status(200).json({ message: "task deleted" });
+  res.status(200).json(result);
 };
 
 const ctrl = {
