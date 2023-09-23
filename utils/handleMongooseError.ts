@@ -4,7 +4,7 @@ import { ICustomError } from "Types";
 
 export const handleMongooseError: ErrorHandlingMiddlewareFunction = (
   error: ICustomError,
-  data,
+  _,
   next
 ) => {
   const { name, code } = error;
