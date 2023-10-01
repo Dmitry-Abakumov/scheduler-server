@@ -22,10 +22,25 @@ const taskSchema = new Schema(
 
 taskSchema.post("save", handleMongooseError);
 
-const updateDoneSchema = {
-  done: Joi.boolean(),
-};
+const addSchema = Joi.object({
+  text: Joi.string().required().messages({
+    "any.required": `missing required text field`,
+  }),
+});
+
+const updateDoneSchema = Joi.object({
+  done: Joi.boolean().required().messages({
+    "any.required": `missing required done field`,
+  }),
+});
 
 type Task = InferSchemaType<typeof taskSchema>;
 
 export const Task = model<Task>("task", taskSchema);
+
+const schemas = {
+  updateDoneSchema,
+  addSchema,
+};
+
+export default schemas;

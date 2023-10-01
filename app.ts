@@ -10,7 +10,7 @@ const app: Express = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("api/auth", authRouter);
+app.use("/api/auth", authRouter);
 app.use("/api/tasks", tasksRouter);
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
