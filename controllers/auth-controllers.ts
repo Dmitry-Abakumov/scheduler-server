@@ -51,6 +51,14 @@ const login = async (req: Request, res: Response) => {
   });
 };
 
+const logout = async (req: IAuthenticateRequest, res: Response) => {
+  const { id } = req.user;
+
+  await User.findByIdAndUpdate(id, { token: "" });
+
+  res.status(204);
+};
+
 const getCurrent = async (req: IAuthenticateRequest, res: Response) => {
   const { email, login } = req.user;
 
@@ -61,6 +69,7 @@ const ctrl = {
   register: ctrlWrapper(register),
   login: ctrlWrapper(login),
   getCurrent: ctrlWrapper(getCurrent),
+  logout: ctrlWrapper(logout),
 };
 
 export default ctrl;

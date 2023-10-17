@@ -14,6 +14,7 @@ export interface IAuthenticateRequest extends Request {
   user: {
     login: string;
     email: string;
+    id?: string;
   };
 }
 
@@ -33,15 +34,11 @@ export const authenticate = async (
   try {
     const { id } = jwt.verify(token, SECRET_KEY as string) as JwtPayload;
 
-    console.log(id);
-
     const user = await User.findById(id);
 
     if (!user || !user.token) throw HttpError(401);
 
-    console.log("ggghhg");
-
-    req.user = user;
+    req.user = { ...user, id };
     next();
   } catch {
     next(HttpError(401));
