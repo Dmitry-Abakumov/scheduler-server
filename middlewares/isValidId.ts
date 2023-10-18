@@ -11,7 +11,6 @@ export const isValidId = (
   const { id } = req.params;
 
   if (!isValidObjectId(id)) {
-    console.log("Id неверный");
     next(HttpError(404, `${id} invalid format`));
   }
 

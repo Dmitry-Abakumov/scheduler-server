@@ -28,7 +28,6 @@ const register = async (req: Request, res: Response) => {
 };
 
 const login = async (req: Request, res: Response) => {
-  console.log(SECRET_KEY);
   const { email, password } = req.body;
   const user = await User.findOne({ email });
 
@@ -52,11 +51,15 @@ const login = async (req: Request, res: Response) => {
 };
 
 const logout = async (req: IAuthenticateRequest, res: Response) => {
-  const { id } = req.user;
+  const { id: _id } = req.user;
 
-  await User.findByIdAndUpdate(id, { token: "" });
+  await User.findByIdAndUpdate(_id, {
+    token: "",
+  });
 
-  res.status(204);
+  // console.log(result);
+
+  res.status(204).end();
 };
 
 const getCurrent = async (req: IAuthenticateRequest, res: Response) => {

@@ -28,9 +28,6 @@ export const authenticate = async (
 
   if (bearer !== "Bearer") next(HttpError(401));
 
-  console.log(token);
-  console.log(SECRET_KEY);
-
   try {
     const { id } = jwt.verify(token, SECRET_KEY as string) as JwtPayload;
 
@@ -38,7 +35,7 @@ export const authenticate = async (
 
     if (!user || !user.token) throw HttpError(401);
 
-    req.user = { ...user, id };
+    req.user = { email: user.email, login: user.login, id };
     next();
   } catch {
     next(HttpError(401));
