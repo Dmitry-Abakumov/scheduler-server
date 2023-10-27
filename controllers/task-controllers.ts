@@ -5,10 +5,20 @@ import { Types } from "mongoose";
 import { ctrlWrapper } from "utils";
 import { HttpError } from "helpers";
 
-const getAllTasks = async (req: Request, res: Response) => {
+import { IAuthenticateRequest } from "middlewares/authenticate";
+
+const getAllTasks = async (req: IAuthenticateRequest, res: Response) => {
+  const { id: owner } = req.user;
   const { done } = req.query;
 
-  res.status(200).json(await Task.find(done ? { done } : {}));
+  res
+    .status(200)
+    .json(
+      await Task.find(done ? { done, owner } : { owner }).populate(
+        "owner",
+        "email"
+      )
+    );
 };
 
 const updateDoneById = async (
@@ -21,10 +31,10 @@ const updateDoneById = async (
   res.status(200).json(result);
 };
 
-const addTask = async (req: Request, res: Response) => {
-  const { body } = req;
+const addTask = async (req: IAuthenticateRequest, res: Response) => {
+  const { id: owner } = req.user;
 
-  const result = await Task.create(body);
+  const result = await Task.create({ ...req.body, owner });
 
   res.status(201).json(result);
 };
