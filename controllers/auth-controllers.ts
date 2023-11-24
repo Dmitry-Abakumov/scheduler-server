@@ -57,8 +57,6 @@ const logout = async (req: IAuthenticateRequest, res: Response) => {
     token: "",
   });
 
-  // console.log(result);
-
   res.status(204).end();
 };
 

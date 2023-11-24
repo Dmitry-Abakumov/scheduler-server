@@ -21,6 +21,10 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
+    displayMode: {
+      type: String,
+      default: "column",
+    },
   },
   {
     versionKey: false,
@@ -51,6 +55,12 @@ const registerSchema = Joi.object({
   }),
 });
 
+const updateDisplayModeSchema = Joi.object({
+  displayMode: Joi.string().required().messages({
+    "any.required": `mising required object property - displayMode`,
+  }),
+});
+
 type User = InferSchemaType<typeof userSchema>;
 
 export const User = model<User>("user", userSchema);
@@ -58,6 +68,7 @@ export const User = model<User>("user", userSchema);
 const schemas = {
   registerSchema,
   loginSchema,
+  updateDisplayModeSchema,
 };
 
 export default schemas;
