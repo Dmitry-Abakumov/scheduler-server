@@ -10,6 +10,8 @@ import schemas from "models/user";
 
 const router = express.Router();
 
+router.get("/display-mode", authenticate, ctrl.getCurrentDisplayMode);
+
 router.patch(
   "/display-mode",
   authenticate,

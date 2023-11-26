@@ -4,14 +4,24 @@ import { IAuthenticateRequest } from "middlewares/authenticate";
 
 import { User } from "models/user";
 
+export const getCurrentDisplayMode = async (
+  req: IAuthenticateRequest,
+  res: Response
+) => {
+  const { id } = req.user;
+  const response = await User.findById(id);
+
+  res.json({ displayMode: response?.displayMode });
+};
+
 export const updateDisplayMode = async (
   req: IAuthenticateRequest,
   res: Response
 ) => {
-  const { id: owner } = req.user;
+  const { id } = req.user;
   const { displayMode } = req.body;
   const response = await User.findByIdAndUpdate(
-    owner,
+    id,
     { displayMode },
     { new: true }
   );
