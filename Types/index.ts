@@ -1,4 +1,1 @@
-export interface ICustomError extends Error {
-  status?: number;
-  code?: number;
-}
+export * from "./common";

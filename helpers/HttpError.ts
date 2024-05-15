@@ -1,4 +1,4 @@
-import { ICustomError } from "Types";
+import { CustomErrorType } from "../types";
 
 const errorMessages = {
   400: "Bad Request",
@@ -11,8 +11,8 @@ const errorMessages = {
 export const HttpError = (
   status: number,
   message: string = errorMessages[status]
-): ICustomError => {
-  const error: ICustomError = new Error(message);
+): CustomErrorType => {
+  const error: CustomErrorType = new Error(message);
   error.status = status;
 
   return error;
