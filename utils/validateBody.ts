@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { ObjectSchema } from "joi";
 
-import { HttpError } from "helpers";
+import { HttpError } from "../helpers";
 
 export const validateBody = (schema: ObjectSchema) => {
   const fn = (req: Request, res: Response, next: NextFunction) => {

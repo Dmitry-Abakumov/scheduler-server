@@ -1,7 +1,7 @@
 import { Schema, model, InferSchemaType } from "mongoose";
 import Joi from "joi";
 
-import { handleMongooseError } from "utils";
+import { handleMongooseError } from "../utils";
 
 const memberSchema = new Schema(
   {

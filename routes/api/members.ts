@@ -2,11 +2,11 @@ import express from "express";
 
 import ctrl from "../../controllers/members-controllers";
 
-import { isValidId } from "middlewares";
+import { isValidId } from "../../middlewares";
 
-import schemas from "models/member";
+import schemas from "../../models/member";
 
-import { validateBody } from "utils";
+import { validateBody } from "../../utils";
 
 const router = express.Router();
 

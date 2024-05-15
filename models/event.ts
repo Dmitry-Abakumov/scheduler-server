@@ -1,6 +1,6 @@
 import { Schema, model, InferSchemaType } from "mongoose";
 
-import { handleMongooseError } from "utils";
+import { handleMongooseError } from "../utils";
 
 const eventSchema = new Schema(
   {

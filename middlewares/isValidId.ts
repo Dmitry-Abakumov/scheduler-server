@@ -1,7 +1,7 @@
 import { isValidObjectId, Types } from "mongoose";
 import { Request, Response, NextFunction } from "express";
 
-import { HttpError } from "helpers";
+import { HttpError } from "../helpers";
 
 export const isValidId = (
   req: Request<{ id: Types.ObjectId }>,

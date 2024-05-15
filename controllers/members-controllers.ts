@@ -1,10 +1,10 @@
 import { Member } from "../models/member";
 import { Response, Request } from "express";
 
-import { ctrlWrapper } from "utils";
-import { HttpError } from "helpers";
+import { ctrlWrapper } from "../utils";
+import { HttpError } from "../helpers";
 
-import { MemberRequestType } from "types/membersControllers";
+import { MemberRequestType } from "../types/membersControllers";
 
 const getEventMembers = async (req: Request, res: Response) => {
   const { id: eventId } = req.params;

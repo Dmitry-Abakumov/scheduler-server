@@ -2,8 +2,8 @@ import express, { Express } from "express";
 import cors from "cors";
 import { Request, Response, NextFunction } from "express";
 
-import eventsRouter from "routes/api/event";
-import membersRouter from "routes/api/members";
+import eventsRouter from "./routes/api/event";
+import membersRouter from "./routes/api/members";
 
 const app: Express = express();
 

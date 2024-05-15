@@ -1,6 +1,6 @@
 import { ErrorHandlingMiddlewareFunction } from "mongoose";
 
-import { CustomErrorType } from "types";
+import { CustomErrorType } from "../types";
 
 export const handleMongooseError: ErrorHandlingMiddlewareFunction = (
   error: CustomErrorType,
